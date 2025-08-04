@@ -1,0 +1,1385 @@
+{
+	"info": {
+		"_postman_id": "1234567-89ab-cdef-0123-456789abcdef",
+		"name": "Óptica API",
+		"description": "Colección de endpoints para la API de Óptica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"item": [
+				{
+					"name": "Obtener Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/token/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "token", ""]
+						},
+						"description": "Obtiene el token de autenticación"
+					}
+				},
+				{
+					"name": "Refrescar Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/token/refresh/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "token", "refresh", ""]
+						},
+						"description": "Refresca el token de autenticación"
+					}
+				}
+			]
+		},
+		{
+			"name": "Permisos",
+			"item": [
+				{
+					"name": "Listar Permisos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/permisos/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "permisos", ""]
+						},
+						"description": "Obtiene la lista de permisos"
+					}
+				},
+				{
+					"name": "Crear Permiso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Gestionar Ventas\",\n    \"codigo\": \"gestionar_ventas\",\n    \"descripcion\": \"Permite gestionar las ventas del sistema\",\n    \"activo\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/permisos/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "permisos", "crear", ""]
+						},
+						"description": "Crea un nuevo permiso"
+					}
+				},
+				{
+					"name": "Obtener Permiso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/permisos/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "permisos", "1", ""]
+						},
+						"description": "Obtiene un permiso específico"
+					}
+				},
+				{
+					"name": "Actualizar Permiso",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Gestionar Ventas Actualizado\",\n    \"codigo\": \"gestionar_ventas\",\n    \"descripcion\": \"Permite gestionar las ventas del sistema (actualizado)\",\n    \"activo\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/permisos/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "permisos", "1", "actualizar", ""]
+						},
+						"description": "Actualiza un permiso existente"
+					}
+				},
+				{
+					"name": "Eliminar Permiso",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/permisos/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "permisos", "1", "eliminar", ""]
+						},
+						"description": "Elimina un permiso"
+					}
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Listar Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/roles/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "roles", ""]
+						},
+						"description": "Obtiene la lista de roles"
+					}
+				},
+				{
+					"name": "Crear Rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Vendedor\",\n    \"descripcion\": \"Rol para vendedores\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/roles/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "roles", "crear", ""]
+						},
+						"description": "Crea un nuevo rol"
+					}
+				},
+				{
+					"name": "Obtener Rol",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/roles/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "roles", "1", ""]
+						},
+						"description": "Obtiene un rol específico"
+					}
+				},
+				{
+					"name": "Actualizar Rol",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Vendedor Senior\",\n    \"descripcion\": \"Rol para vendedores senior\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/roles/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "roles", "1", "actualizar", ""]
+						},
+						"description": "Actualiza un rol existente"
+					}
+				},
+				{
+					"name": "Eliminar Rol",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/roles/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "roles", "1", "eliminar", ""]
+						},
+						"description": "Elimina un rol"
+					}
+				},
+				{
+					"name": "Asignar Permisos a Rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"permisos\": [1, 2, 3]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/roles/1/asignar-permisos/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "roles", "1", "asignar-permisos", ""]
+						},
+						"description": "Asigna permisos a un rol"
+					}
+				}
+			]
+		},
+		{
+			"name": "Sucursales",
+			"item": [
+				{
+					"name": "Listar Sucursales",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/sucursales/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "sucursales", ""]
+						},
+						"description": "Obtiene la lista de sucursales"
+					}
+				},
+				{
+					"name": "Crear Sucursal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Sucursal Centro\",\n    \"direccion\": \"Av. Principal 123\",\n    \"telefono\": \"1234567890\",\n    \"email\": \"centro@optica.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/sucursales/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "sucursales", "crear", ""]
+						},
+						"description": "Crea una nueva sucursal"
+					}
+				},
+				{
+					"name": "Obtener Sucursal",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/sucursales/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "sucursales", "1", ""]
+						},
+						"description": "Obtiene una sucursal específica"
+					}
+				},
+				{
+					"name": "Actualizar Sucursal",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Sucursal Centro Actualizada\",\n    \"direccion\": \"Av. Principal 123\",\n    \"telefono\": \"1234567890\",\n    \"email\": \"centro@optica.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/sucursales/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "sucursales", "1", "actualizar", ""]
+						},
+						"description": "Actualiza una sucursal existente"
+					}
+				},
+				{
+					"name": "Eliminar Sucursal",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/sucursales/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "sucursales", "1", "eliminar", ""]
+						},
+						"description": "Elimina una sucursal"
+					}
+				},
+				{
+					"name": "Cambiar Estado Sucursal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activo\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/sucursales/1/cambiar-estado/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "sucursales", "1", "cambiar-estado", ""]
+						},
+						"description": "Cambia el estado de una sucursal"
+					}
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Listar Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", ""]
+						},
+						"description": "Obtiene la lista de usuarios"
+					}
+				},
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"nuevo_usuario\",\n    \"password\": \"password123\",\n    \"confirmar_password\": \"password123\",\n    \"nombre_completo\": \"Nuevo Usuario\",\n    \"email\": \"nuevo@optica.com\",\n    \"rol\": 1,\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", "crear", ""]
+						},
+						"description": "Crea un nuevo usuario"
+					}
+				},
+				{
+					"name": "Obtener Usuario",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", "1", ""]
+						},
+						"description": "Obtiene un usuario específico"
+					}
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_completo\": \"Usuario Actualizado\",\n    \"email\": \"actualizado@optica.com\",\n    \"rol\": 1,\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", "1", "actualizar", ""]
+						},
+						"description": "Actualiza un usuario existente"
+					}
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", "1", "eliminar", ""]
+						},
+						"description": "Elimina un usuario"
+					}
+				},
+				{
+					"name": "Obtener Perfil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/perfil/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", "perfil", ""]
+						},
+						"description": "Obtiene el perfil del usuario autenticado"
+					}
+				},
+				{
+					"name": "Cambiar Contraseña",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password_actual\": \"password123\",\n    \"password_nuevo\": \"nuevo_password123\",\n    \"confirmar_password\": \"nuevo_password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/usuarios/cambiar-password/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "users", "usuarios", "cambiar-password", ""]
+						},
+						"description": "Cambia la contraseña del usuario autenticado"
+					}
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"item": [
+				{
+					"name": "Listar Pacientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/?page=1&page_size=10&search=&sucursal=&genero=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", ""],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Número de página"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "Elementos por página (máximo 100)"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Buscar por nombre, código, correo o teléfono"
+								},
+								{
+									"key": "sucursal",
+									"value": "",
+									"description": "Filtrar por ID de sucursal"
+								},
+								{
+									"key": "genero",
+									"value": "",
+									"description": "Filtrar por género (M, F, O)"
+								}
+							]
+						},
+						"description": "Lista todos los pacientes activos con paginación y filtros"
+					}
+				},
+				{
+					"name": "Crear Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_completo\": \"Juan Pérez García\",\n    \"direccion\": \"Calle 123 #45-67\",\n    \"fecha_nacimiento\": \"1990-05-15\",\n    \"genero\": \"M\",\n    \"telefono\": \"3001234567\",\n    \"correo\": \"juan.perez@email.com\",\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", "crear", ""]
+						},
+						"description": "Crea un nuevo paciente"
+					}
+				},
+				{
+					"name": "Obtener Paciente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", "1", ""]
+						},
+						"description": "Obtiene los detalles de un paciente específico"
+					}
+				},
+				{
+					"name": "Actualizar Paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_completo\": \"Juan Pérez García Actualizado\",\n    \"direccion\": \"Calle 123 #45-67\",\n    \"fecha_nacimiento\": \"1990-05-15\",\n    \"genero\": \"M\",\n    \"telefono\": \"3001234567\",\n    \"correo\": \"juan.perez.nuevo@email.com\",\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", "1", "actualizar", ""]
+						},
+						"description": "Actualiza los datos de un paciente existente"
+					}
+				},
+				{
+					"name": "Eliminar Paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", "1", "eliminar", ""]
+						},
+						"description": "Elimina un paciente (marcado como inactivo)"
+					}
+				},
+				{
+					"name": "Activar Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/1/activar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", "1", "activar", ""]
+						},
+						"description": "Reactiva un paciente inactivo"
+					}
+				},
+				{
+					"name": "Buscar Paciente por Código",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/pacientes/buscar/VOR-00001/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "pacientes", "buscar", "VOR-00001", ""]
+						},
+						"description": "Busca un paciente por su código único"
+					}
+				}
+			]
+		},
+		{
+			"name": "Citas Médicas",
+			"item": [
+				{
+					"name": "Listar Citas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/?page=1&page_size=10&search=&estado=&sucursal=&doctor_id=&fecha_desde=&fecha_hasta=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", ""],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Número de página"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "Elementos por página"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Buscar por nombre de paciente o comentarios"
+								},
+								{
+									"key": "estado",
+									"value": "",
+									"description": "Filtrar por estado (creada, confirmada, reagendada, cancelada, en_progreso, finalizada)"
+								},
+								{
+									"key": "sucursal",
+									"value": "",
+									"description": "Filtrar por ID de sucursal"
+								},
+								{
+									"key": "doctor_id",
+									"value": "",
+									"description": "Filtrar por ID de doctor"
+								},
+								{
+									"key": "fecha_desde",
+									"value": "",
+									"description": "Fecha desde (YYYY-MM-DD)"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "",
+									"description": "Fecha hasta (YYYY-MM-DD)"
+								}
+							]
+						},
+						"description": "Lista todas las citas activas con filtros y paginación"
+					}
+				},
+				{
+					"name": "Crear Cita",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paciente\": 1,\n    \"fecha_hora\": \"2024-01-15T10:30:00\",\n    \"estado\": \"creada\",\n    \"comentarios\": \"Revisión de rutina\",\n    \"doctor_asignado\": 2,\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "crear", ""]
+						},
+						"description": "Crea una nueva cita médica"
+					}
+				},
+				{
+					"name": "Obtener Cita",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "1", ""]
+						},
+						"description": "Obtiene los detalles de una cita específica"
+					}
+				},
+				{
+					"name": "Actualizar Cita",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paciente\": 1,\n    \"fecha_hora\": \"2024-01-15T11:00:00\",\n    \"estado\": \"confirmada\",\n    \"comentarios\": \"Revisión de rutina - Confirmada\",\n    \"doctor_asignado\": 2,\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "1", "actualizar", ""]
+						},
+						"description": "Actualiza los datos de una cita existente"
+					}
+				},
+				{
+					"name": "Eliminar Cita",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "1", "eliminar", ""]
+						},
+						"description": "Elimina una cita (marcado como inactivo)"
+					}
+				},
+				{
+					"name": "Cambiar Estado de Cita",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"estado\": \"confirmada\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/1/cambiar-estado/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "1", "cambiar-estado", ""]
+						},
+						"description": "Cambia el estado de una cita"
+					}
+				},
+				{
+					"name": "Reasignar Doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"doctor_asignado\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/1/reasignar-doctor/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "1", "reasignar-doctor", ""]
+						},
+						"description": "Reasigna un doctor a una cita existente"
+					}
+				},
+				{
+					"name": "Citas por Doctor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/doctor/2/?fecha_desde=&fecha_hasta=&estado=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "doctor", "2", ""],
+							"query": [
+								{
+									"key": "fecha_desde",
+									"value": "",
+									"description": "Fecha desde (YYYY-MM-DD)"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "",
+									"description": "Fecha hasta (YYYY-MM-DD)"
+								},
+								{
+									"key": "estado",
+									"value": "",
+									"description": "Filtrar por estado"
+								}
+							]
+						},
+						"description": "Obtiene todas las citas de un doctor específico"
+					}
+				},
+				{
+					"name": "Citas por Paciente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/citas/paciente/1/?fecha_desde=&fecha_hasta=&estado=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "citas", "paciente", "1", ""],
+							"query": [
+								{
+									"key": "fecha_desde",
+									"value": "",
+									"description": "Fecha desde (YYYY-MM-DD)"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "",
+									"description": "Fecha hasta (YYYY-MM-DD)"
+								},
+								{
+									"key": "estado",
+									"value": "",
+									"description": "Filtrar por estado"
+								}
+							]
+						},
+						"description": "Obtiene todas las citas de un paciente específico"
+					}
+				}
+			]
+		},
+		{
+			"name": "Diagnósticos",
+			"item": [
+				{
+					"name": "Listar Diagnósticos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/?page=1&page_size=10&search=&paciente_id=&sucursal=&fecha_desde=&fecha_hasta=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", ""],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Número de página"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "Elementos por página"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Buscar por nombre de paciente o comentarios"
+								},
+								{
+									"key": "paciente_id",
+									"value": "",
+									"description": "Filtrar por ID de paciente"
+								},
+								{
+									"key": "sucursal",
+									"value": "",
+									"description": "Filtrar por ID de sucursal"
+								},
+								{
+									"key": "fecha_desde",
+									"value": "",
+									"description": "Fecha desde (YYYY-MM-DD)"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "",
+									"description": "Fecha hasta (YYYY-MM-DD)"
+								}
+							]
+						},
+						"description": "Lista todos los diagnósticos con filtros y paginación"
+					}
+				},
+				{
+					"name": "Crear Diagnóstico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paciente\": 1,\n    \"fecha_hora_consulta\": \"2024-01-15T14:30:00\",\n    \"comentario\": \"Examen de rutina\",\n    \"datos_clinicos\": {\n        \"rx_en_uso\": \"OD: -1.00 Esf, OI: -0.75 Esf\",\n        \"antecedentes_medicos\": \"Ninguno relevante\",\n        \"sintomas_signos\": \"Fatiga visual\",\n        \"agudeza_visual\": \"OD: 20/25, OI: 20/30\",\n        \"rx_final\": \"OD: -1.25 Esf, OI: -1.00 Esf\"\n    },\n    \"tipo_lente\": \"monofocal\",\n    \"material_lente\": \"organico\",\n    \"filtro_lente\": \"antireflejo\",\n    \"proximo_control\": \"2024-07-15\",\n    \"remision_oftalmologica\": false,\n    \"observaciones_adicionales\": \"Paciente necesita usar lentes constantemente\",\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/crear/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "crear", ""]
+						},
+						"description": "Crea un nuevo diagnóstico"
+					}
+				},
+				{
+					"name": "Obtener Diagnóstico",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "1", ""]
+						},
+						"description": "Obtiene los detalles de un diagnóstico específico"
+					}
+				},
+				{
+					"name": "Actualizar Diagnóstico",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paciente\": 1,\n    \"fecha_hora_consulta\": \"2024-01-15T14:30:00\",\n    \"comentario\": \"Examen de rutina - Actualizado\",\n    \"datos_clinicos\": {\n        \"rx_en_uso\": \"OD: -1.00 Esf, OI: -0.75 Esf\",\n        \"antecedentes_medicos\": \"Ninguno relevante\",\n        \"sintomas_signos\": \"Fatiga visual leve\",\n        \"agudeza_visual\": \"OD: 20/25, OI: 20/30\",\n        \"rx_final\": \"OD: -1.25 Esf, OI: -1.00 Esf\"\n    },\n    \"tipo_lente\": \"monofocal\",\n    \"material_lente\": \"organico\",\n    \"filtro_lente\": \"antireflejo\",\n    \"proximo_control\": \"2024-07-15\",\n    \"remision_oftalmologica\": false,\n    \"observaciones_adicionales\": \"Paciente debe usar lentes constantemente para mejor visión\",\n    \"sucursal\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/1/actualizar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "1", "actualizar", ""]
+						},
+						"description": "Actualiza los datos de un diagnóstico existente"
+					}
+				},
+				{
+					"name": "Eliminar Diagnóstico",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/1/eliminar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "1", "eliminar", ""]
+						},
+						"description": "Elimina un diagnóstico (marcado como inactivo)"
+					}
+				},
+				{
+					"name": "Diagnósticos por Paciente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/paciente/1/?fecha_desde=&fecha_hasta=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "paciente", "1", ""],
+							"query": [
+								{
+									"key": "fecha_desde",
+									"value": "",
+									"description": "Fecha desde (YYYY-MM-DD)"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "",
+									"description": "Fecha hasta (YYYY-MM-DD)"
+								}
+							]
+						},
+						"description": "Obtiene todos los diagnósticos de un paciente específico"
+					}
+				},
+				{
+					"name": "Recordatorios Pendientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/recordatorios/?dias_anticipacion=7",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "recordatorios", ""],
+							"query": [
+								{
+									"key": "dias_anticipacion",
+									"value": "7",
+									"description": "Días de anticipación para el recordatorio"
+								}
+							]
+						},
+						"description": "Obtiene la lista de pacientes que necesitan recordatorios de control"
+					}
+				},
+				{
+					"name": "Marcar Recordatorio Enviado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/1/recordatorio-enviado/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "1", "recordatorio-enviado", ""]
+						},
+						"description": "Marca un recordatorio como enviado"
+					}
+				},
+				{
+					"name": "Estadísticas de Diagnósticos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/estadisticas/?fecha_desde=&fecha_hasta=&sucursal=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "estadisticas", ""],
+							"query": [
+								{
+									"key": "fecha_desde",
+									"value": "",
+									"description": "Fecha desde (YYYY-MM-DD)"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "",
+									"description": "Fecha hasta (YYYY-MM-DD)"
+								},
+								{
+									"key": "sucursal",
+									"value": "",
+									"description": "Filtrar por ID de sucursal"
+								}
+							]
+						},
+						"description": "Obtiene estadísticas de diagnósticos por período y sucursal"
+					}
+				},
+				{
+					"name": "Estructura de Datos Clínicos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/estructura-datos-clinicos/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "estructura-datos-clinicos", ""]
+						},
+						"description": "Obtiene la estructura esperada para los datos clínicos en formato JSON"
+					}
+				},
+				{
+					"name": "Validar Estructura de Datos Clínicos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"datos_clinicos\": {\n        \"rx_en_uso\": \"OD: -1.00 Esf, OI: -0.75 Esf\",\n        \"antecedentes_medicos\": \"Ninguno relevante\",\n        \"sintomas_signos\": \"Fatiga visual\",\n        \"agudeza_visual\": \"OD: 20/25, OI: 20/30\",\n        \"rx_final\": \"OD: -1.25 Esf, OI: -1.00 Esf\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/core/diagnosticos/validar-estructura/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "core", "diagnosticos", "validar-estructura", ""]
+						},
+						"description": "Valida si la estructura de datos clínicos es correcta"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+} 

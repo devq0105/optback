@@ -38,6 +38,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('users.urls')),
+    path('api/core/', include('core.urls')),
     
     # Documentación Swagger
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
